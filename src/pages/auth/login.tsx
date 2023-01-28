@@ -33,7 +33,7 @@ const Login = (props: Props) => {
   }
 
   return (
-    <Center w="full" h="100vh" bg="#F2F5F7">
+    <VStack pt="20px" w="full" h="100vh" bg="#F2F5F7">
       <VStack
         w={{ base: '99%', md: '404px' }}
         p="10px"
@@ -167,7 +167,7 @@ const Login = (props: Props) => {
           </Box>
         </Text>
       </VStack>
-    </Center>
+    </VStack>
   )
 }
 
