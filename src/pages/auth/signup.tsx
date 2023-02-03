@@ -27,7 +27,7 @@ const initState = {
 interface Props {}
 
 const Signup = (props: Props) => {
-  const [passwordVis, setPasswordVis] = useState('')
+  const [passwordVis, setPasswordVis] = useState('password')
   const [user, setUser] = useState<User>(initState)
   const { loading, errorMessage,error } = useSelector((s: StoreType) => s.auth)
   const dispatch = useDispatch()
