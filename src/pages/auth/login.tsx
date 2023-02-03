@@ -1,21 +1,22 @@
+import { login } from '@/redux/auth/auth.actions'
+import { StoreType } from '@/redux/store'
 import {
-  Center,
-  FormControl,
+  Box, Button, FormControl,
   FormLabel,
-  HStack,
-  Input,
+  HStack, Icon, Input,
   Text,
-  VStack,
-  Icon,
-  Button,
-  Box,
+  VStack
 } from '@chakra-ui/react'
-import React, { FormEvent, useState } from 'react'
-import { User } from '../../utils/Types'
-import { AiFillEye, AiFillEyeInvisible, AiFillFacebook } from 'react-icons/ai'
-import { FcGoogle } from 'react-icons/fc'
-import { FaGithub } from 'react-icons/fa'
+import axios from 'axios'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
+import { FormEvent, useState } from 'react'
+import { AiFillEye, AiFillEyeInvisible, AiFillFacebook } from 'react-icons/ai'
+import { FaGithub } from 'react-icons/fa'
+import { FcGoogle } from 'react-icons/fc'
+import { useSelector, useDispatch } from 'react-redux';
+import { User } from '../../utils/Types'
 
 const initState = {
   email: '',
@@ -25,11 +26,15 @@ const initState = {
 interface Props {}
 
 const Login = (props: Props) => {
+  const router = useRouter()
+  const dispatch = useDispatch()
   const [passwordVis, setPasswordVis] = useState('')
   const [user, setUser] = useState<User>(initState)
+  const { loading, errorMessage,error,token } = useSelector((s: StoreType) => s.auth)
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async(e: FormEvent) => {
     e.preventDefault()
+    // dispatch(login())
   }
 
   return (
@@ -128,6 +133,7 @@ const Login = (props: Props) => {
 
         <HStack w="full" justify={'center'} align="center" gap={{ md: '10px' }}>
           <Button
+            onClick={()=>signIn('google')}
             border={'1px solid red '}
             leftIcon={<Icon as={FcGoogle} />}
             variant={'outline'}
@@ -136,6 +142,7 @@ const Login = (props: Props) => {
             Google
           </Button>
           <Button
+            onClick={()=>signIn('github')}
             border={'1px solid black '}
             leftIcon={<Icon as={FaGithub} />}
             variant={'outline'}
@@ -143,6 +150,7 @@ const Login = (props: Props) => {
             Github
           </Button>
           <Button
+            onClick={()=>signIn('facebook')}
             border={'1px solid #4267B2'}
             leftIcon={<Icon as={AiFillFacebook} />}
             variant={'outline'}
@@ -155,6 +163,7 @@ const Login = (props: Props) => {
 
         <Text fontSize={15} style={{ marginTop: '30px' }}>
           New to techBlogs?{' '}
+          <Link href={'/auth/signup'}>
           <Box
             as="span"
             fontSize={17}
@@ -165,6 +174,7 @@ const Login = (props: Props) => {
           >
             Signup
           </Box>
+          </Link>
         </Text>
       </VStack>
     </VStack>

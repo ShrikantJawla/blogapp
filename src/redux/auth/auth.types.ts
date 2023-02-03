@@ -1,0 +1,7 @@
+export enum Auth {
+	LOADING = "AUTH/LOGIN",
+	SUCCESS = "AUTH/SUCCESS",
+	ERROR = "AUTH/ERROR",
+	LOGIN = "AUTH/LOGIN",
+	LOGOUT = "AUTH/LOGOUT",
+}
