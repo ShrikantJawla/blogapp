@@ -145,7 +145,7 @@ export default function Home() {
               </GridItem>
             ))}
           </Grid>
-          <Button w="full" display={{ base: "block", lg: "none" }}>
+          <Button w="full" display={{ base: "block", lg: "none" }} mt="20px">
             View All
           </Button>
         </Box>
