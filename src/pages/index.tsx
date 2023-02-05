@@ -1,8 +1,77 @@
-import { signIn, useSession } from 'next-auth/react'
-import Head from 'next/head'
-
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  GridItem,
+  Image,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { signIn, useSession } from "next-auth/react";
+import Head from "next/head";
+import image from "./Image.png";
+import Blogimage from "./BlogImage.png";
+import Blogimage2 from "./BlogImage2.png";
+import { Lora } from "@next/font/google";
+import { useState } from "react";
+import { Card, Card2, Footer, HomeCard, HomeCard2 } from "@/components";
+const lora = Lora({ weight: ["400", "700"], subsets: ["latin"] });
+const cata = [
+  "All",
+  "Adventure",
+  "Travel",
+  "Fashion",
+  "Technology",
+  "Branding",
+];
+const blogs = [
+  {
+    cata: "Adventure",
+    date: "08.08.2021",
+    title: "Dream destinations to visit this year in Paris",
+    desc: "Progressively incentivize cooperative systems through technically sound functionalities. Credibly productivate seamless data with flexible schemas.",
+  },
+  {
+    cata: "Adventure",
+    date: "08.08.2021",
+    title: "Dream destinations to visit this year in Paris",
+    desc: "Progressively incentivize cooperative systems through technically sound functionalities. Credibly productivate seamless data with flexible schemas.",
+  },
+  {
+    cata: "Adventure",
+    date: "08.08.2021",
+    title: "Dream destinations to visit this year in Paris",
+    desc: "Progressively incentivize cooperative systems through technically sound functionalities. Credibly productivate seamless data with flexible schemas.",
+  },
+  {
+    cata: "Adventure",
+    date: "08.08.2021",
+    title: "Dream destinations to visit this year in Paris",
+    desc: "Progressively incentivize cooperative systems through technically sound functionalities. Credibly productivate seamless data with flexible schemas.",
+  },
+  {
+    cata: "Adventure",
+    date: "08.08.2021",
+    title: "Dream destinations to visit this year in Paris",
+    desc: "Progressively incentivize cooperative systems through technically sound functionalities. Credibly productivate seamless data with flexible schemas.",
+  },
+  {
+    cata: "Adventure",
+    date: "08.08.2021",
+    title: "Dream destinations to visit this year in Paris",
+    desc: "Progressively incentivize cooperative systems through technically sound functionalities. Credibly productivate seamless data with flexible schemas.",
+  },
+  {
+    cata: "Adventure",
+    date: "08.08.2021",
+    title: "Dream destinations to visit this year in Paris",
+    desc: "Progressively incentivize cooperative systems through technically sound functionalities. Credibly productivate seamless data with flexible schemas.",
+  },
+];
 export default function Home() {
-  const { data } = useSession()
+  const { data } = useSession();
+  const [active, setActive] = useState<String>("All");
   return (
     <>
       <Head>
@@ -11,8 +80,122 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={lora.className}>
+        <HomeCard
+          image={image.src}
+          cata="Adventure"
+          text={"Richird Norton photorealistic rendering as real photos"}
+          link="#"
+          desc="Progressively incentivize cooperative systems through technically
+          sound functionalities. The credibly productivate seamless data."
+        />
+        <Box w={{ base: "95%", lg: "90%" }} mx="auto" mt="80px">
+          <Text
+            fontWeight={700}
+            color="#495057"
+            fontSize={"36px"}
+            lineHeight="46px"
+          >
+            Popular topics
+          </Text>
+          <Flex
+            color="#495057"
+            fontSize="12px"
+            lineHeight={"25px"}
+            fontWeight={700}
+            my="30px"
+            w="full"
+            justifyContent={"space-between"}
+          >
+            <Flex gap={{ base: "10px", lg: "20px" }}>
+              {cata.map((el) => (
+                <Text
+                  key={el}
+                  color={active === el ? "#D4A373" : ""}
+                  onClick={() => setActive(el)}
+                  cursor="pointer"
+                >
+                  {el}
+                </Text>
+              ))}
+            </Flex>
+            <Text cursor={"pointer"} display={{ base: "none", lg: "block" }}>
+              View All
+            </Text>
+          </Flex>
+          <Grid
+            templateColumns={{
+              lg: "repeat(4, 1fr)",
+              md: "repeat(2, 1fr)",
+              base: "repeat(1, 1fr)",
+            }}
+            w="full"
+            gap="20px"
+          >
+            {blogs.map((el, i) => (
+              <GridItem key={i}>
+                <Card
+                  image={Blogimage.src}
+                  title={el.title}
+                  desc={el.desc}
+                  date={el.date}
+                  cata={el.cata}
+                  link={"#"}
+                />
+              </GridItem>
+            ))}
+          </Grid>
+          <Button w="full" display={{ base: "block", lg: "none" }}>
+            View All
+          </Button>
+        </Box>
+        <Box my={{ base: "50px", lg: "100px" }}>
+          <HomeCard2
+            image={image.src}
+            cata="Adventure"
+            text={"Richird Norton photorealistic rendering as real photos"}
+            link="#"
+            desc="Progressively incentivize cooperative systems through technically
+          sound functionalities. The credibly productivate seamless data."
+          />
+        </Box>
+        <Box w={{ base: "95%", lg: "90%" }} mx="auto" my="50px">
+          <Text
+            fontWeight={700}
+            color="#495057"
+            fontSize={"36px"}
+            lineHeight="46px"
+            my={{ base: "30px", lg: "50px" }}
+          >
+            Editor’s Pick
+          </Text>
+          <Grid
+            templateColumns={{
+              lg: "repeat(3, 1fr)",
+              base: "repeat(1, 1fr)",
+            }}
+            w="full"
+            gap="20px"
+          >
+            {blogs.map((el, i) => {
+              if (i < 3)
+                return (
+                  <GridItem key={i}>
+                    <Card2
+                      image={Blogimage2.src}
+                      title={el.title}
+                      desc={el.desc}
+                      date={el.date}
+                      cata={el.cata}
+                      link={"#"}
+                    />
+                  </GridItem>
+                );
+            })}
+          </Grid>
+        </Box>
+        <Footer />
       </main>
     </>
-  )
+  );
 }
