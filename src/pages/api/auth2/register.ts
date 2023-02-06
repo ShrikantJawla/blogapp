@@ -26,7 +26,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Response>) => {
 				if (!existing) {
 					const hash = await bcrypt.hash(password, salt);
 					await UserModel.create({ email, name, password: hash });
-					res.redirect("https://github.com/ShrikantJawla/url_shortener");
+					res.json({
+						status: 1,
+						message: "User created successfully!",
+					});
 				} else {
 					return res.json({
 						status: 0,

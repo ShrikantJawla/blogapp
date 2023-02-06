@@ -9,15 +9,33 @@ interface Data {
 }
 
 const loading = () => ({ type: Auth.LOADING });
+
 const success = () => ({ type: Auth.SUCCESS });
+
 const error = (error: string) => ({ type: Auth.ERROR, payload: error });
+
+export const signupStatus = (response: {
+	status: number;
+	message: string
+}) => ({ type: Auth.SIGNUPSTATUS, payload: response });
+
+export const resetStatus = () => ({ type: Auth.RESETSTATUS })
+
+export const loginStatus = (response: {
+	status: number;
+	message: string
+	token: string
+}) => ({ type: Auth.LOGINSTATUS, payload: response })
+
+export const resetLoginStatus = () => ({ type: Auth.RESETLOGINSTATUS})
 
 export const register = (data: Data): any => async (
 	dispatch: DispatchType
 ): Promise<void> => {
 	try {
 		dispatch(loading());
-		await axios.post("/api/auth2/register", data);
+		let res = await axios.post("/api/auth2/register", data);
+		dispatch(signupStatus(res.data));
 		dispatch(success());
 	} catch (err) {
 		const { message }: any = err;
@@ -26,10 +44,14 @@ export const register = (data: Data): any => async (
 	}
 };
 
-export const login = (data: Data): any => async (dispatch: DispatchType) => {
+export const login = (data: Data): any => async (
+	dispatch: DispatchType
+): Promise<void> => {
 	try {
 		dispatch(loading());
-		await axios.post("/api/auth2/login", data);
+		let res = await axios.post("/api/auth2/login", data);
+		dispatch({ type: Auth.LOGIN, payload: res.data.token })
+		dispatch(loginStatus(res.data))
 		dispatch(success());
 	} catch (err) {
 		const { message }: any = err;
