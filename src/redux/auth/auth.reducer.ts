@@ -1,7 +1,6 @@
 import { Action, InitState } from "@/utils/Types";
 import { Auth } from "./auth.types";
 
-let currToken: string;
 
 function getToken() {
 	if (typeof window !== "undefined")
@@ -11,8 +10,13 @@ function getToken() {
 const initState: InitState = {
 	loading: false,
 	error: false,
-	errorMessage: "",
 	token: getToken() !== "" ? getToken() : "",
+	signupStatus: { status: null, message: '' },
+	loginStatus: {
+		status: null,
+		message: '',
+		token:''
+	}
 };
 
 export const authReducer = (
@@ -31,24 +35,58 @@ export const authReducer = (
 				loading: false,
 			};
 		}
+		case Auth.SIGNUPSTATUS: {
+			return {
+				...state,
+				signupStatus: payload,
+			};
+		}
+		case Auth.RESETSTATUS: {
+			return {
+				...state,
+				signupStatus: {
+					...state.signupStatus,
+					status: null,
+					message: ''
+				},
+			};
+		}
+		case Auth.LOGINSTATUS: {
+			return {
+				...state,
+				loginStatus: {...payload},
+			};
+		}
+		case Auth.RESETLOGINSTATUS: {
+			return {
+				...state,
+				loginStatus: {
+					...state.loginStatus,
+					status: null,
+					message: '',
+					token:''
+				},
+			};
+		}
 		case Auth.ERROR:
 			return {
 				...state,
 				error: false,
 				loading: false,
 			};
-		case Auth.LOGIN:
+		case Auth.LOGIN:{
 			if (typeof window !== "undefined")
 				localStorage.setItem("blogAppToken", payload);
 			return {
 				...state,
 				token: payload,
-			};
+			};}
 		case Auth.LOGOUT: {
 			if (typeof window !== "undefined")
 				localStorage.removeItem("blogAppToken");
 			return {
 				...state,
+				token:''
 			};
 		}
 		default:
