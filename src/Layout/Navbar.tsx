@@ -17,6 +17,7 @@ export const links = [
 	{ text: "Contact Us", href: "#" },
 ];
 
+// props
 interface Props {}
 
 export const Navbar = (props: Props) => {
