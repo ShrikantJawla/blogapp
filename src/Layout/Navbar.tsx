@@ -8,7 +8,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useSelector, useDispatch } from "react-redux";
 import { StoreType } from "../redux/store";
 import { logout } from "@/redux/auth/auth.actions";
-//
+import { useEffect, useState } from "react";
 
 export const links = [
 	{ text: "Home", href: "/" },
@@ -17,12 +17,12 @@ export const links = [
 	{ text: "Contact Us", href: "#" },
 ];
 
-// props
 interface Props {}
 
 export const Navbar = (props: Props) => {
 	const { token } = useSelector((s: StoreType) => s.auth);
 	const dispatch = useDispatch();
+	const [active, setActive] = useState("rgba(0,0,0,0.3)");
 	const { data: session } = useSession();
 	const variant = useBreakpointValue(
 		{
@@ -33,16 +33,26 @@ export const Navbar = (props: Props) => {
 			fallback: "md",
 		}
 	);
+	function scrollCB() {
+		if (window.scrollY > 50) setActive("rgba(0,0,0,0.8)");
+		else setActive("rgba(0,0,0,0.3)");
+	}
+	useEffect(() => {
+		window.addEventListener("scroll", scrollCB);
+		return () => window.removeEventListener("scroll", scrollCB);
+	}, []);
 	return (
 		<HStack
 			h="80px"
-			position={"sticky"}
+			position={"fixed"}
 			w="full"
-			bg={"rgba(0,0,0,0.3)"}
 			justify="flex-end"
 			px="23px"
 			gap={"6px"}
 			zIndex={200}
+			bg={active}
+			fontWeight={700}
+			fontFamily={"Poppins sans-serif"}
 		>
 			{links.map((ele, ind) => (
 				<>
@@ -66,9 +76,9 @@ export const Navbar = (props: Props) => {
 			{session || token ? (
 				<Text
 					style={{ display: variant }}
-					color="white"
+					color="red"
 					fontSize={17}
-					fontWeight={600}
+					fontWeight={800}
 					_hover={{ textDecoration: "underline" }}
 					onClick={() => {
 						if (session) {
@@ -105,7 +115,7 @@ export const Navbar = (props: Props) => {
 					</Link>
 				</>
 			)}
-			<Avatar src={(session && session.user?.image) || ""} />
+			<Avatar src={(session && session.user.image) || ""} />
 			<NavbarSmall />
 		</HStack>
 	);
