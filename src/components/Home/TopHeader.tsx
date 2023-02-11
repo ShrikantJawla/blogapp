@@ -1,7 +1,7 @@
 /** @format */
 
-import { VStack, Image, Text, HStack, Box } from "@chakra-ui/react";
-import React, { FormEvent, useState } from "react";
+import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { useState } from "react";
 import Styles from "./Navbar.module.css";
 
 interface Props {}
@@ -36,7 +36,6 @@ export const TopHeader = (props: Props) => {
 				padding={{ base: "4px", md: "10px" }}
 				className={`${Styles.padding_min_320} ${Styles.padding_min_720}`}
 				spacing="15px"
-				fontFamily={"Lora serif"}
 			>
 				<Text
 					color={"white"}
@@ -59,17 +58,18 @@ export const TopHeader = (props: Props) => {
 				<HStack
 					w="full"
 					color={"white"}
-					fontSize={"13px"}
+					fontSize={"14px"}
 					fontWeight="400"
 					align={"flex-start"}
 				>
 					<Text>08.08.2023</Text>
-					<Box bg="white" h="2px" w={"30px"} style={{ marginTop: "8px" }}></Box>
+					<Box bg="white" h="1px" w={"30px"} style={{ marginTop: "9px" }}></Box>
 					<Text fontFamily={"Poppins sans-serif"}>
 						Progressively incentivize cooperative systems through technically
 						sound functionalities. The credibly productivate seamless data.
 					</Text>
 				</HStack>
+				{/* Pagination Part */}
 				<HStack
 					style={{ marginTop: "30px" }}
 					onClick={(e: any) => {
