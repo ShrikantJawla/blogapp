@@ -115,7 +115,7 @@ export const Navbar = (props: Props) => {
 					</Link>
 				</>
 			)}
-			<Avatar src={(session && session.user.image) || ""} />
+			<Avatar size={"sm"} src={(session && session.user.image) || ""} />
 			<NavbarSmall />
 		</HStack>
 	);
