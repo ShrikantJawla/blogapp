@@ -1,0 +1,14 @@
+/** @format */
+
+@media all and (min-width: 320px) {
+	.padding_min_360 {
+		padding: 4px !important;
+	}
+}
+
+@media all and (min-width: 720px) {
+	.padding_min_720 {
+		margin-bottom: 7px !important;
+		margin-left: 20px !important;
+	}
+}
