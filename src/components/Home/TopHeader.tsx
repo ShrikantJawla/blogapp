@@ -11,7 +11,7 @@ export const TopHeader = (props: Props) => {
 	return (
 		<VStack
 			w="full"
-			h="600px"
+			h="560px"
 			position={"relative"}
 			top="0"
 			justify={"flex-end"}
@@ -32,7 +32,7 @@ export const TopHeader = (props: Props) => {
 			{/* Container containing Text */}
 			<VStack
 				w={{ base: "full", md: "530px" }}
-				h={{ base: "350px", md: "300px" }}
+				h={{ base: "390px", md: "300px" }}
 				padding={{ base: "4px", md: "10px" }}
 				className={`${Styles.padding_min_320} ${Styles.padding_min_720}`}
 				spacing="15px"
