@@ -3,6 +3,7 @@
 import { TopHeader } from "@/components/Home/TopHeader";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
+import { Popular } from "../components/Home/Popular";
 
 export default function Home() {
 	const { data } = useSession();
@@ -16,6 +17,7 @@ export default function Home() {
 			</Head>
 			<main>
 				<TopHeader />
+				<Popular />
 			</main>
 		</>
 	);
