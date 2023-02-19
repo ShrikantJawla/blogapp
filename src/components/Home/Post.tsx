@@ -13,7 +13,7 @@ export const Post = (props: Props) => {
 			m="auto"
 			cursor={"pointer"}
 			transition="all 0.3s ease-in-out"
-			_hover={{ boxShadow: "2xl" }}
+			_hover={{ boxShadow: "2xl", transform: "scale(1.04)" }}
 			rounded="md"
 		>
 			<Image

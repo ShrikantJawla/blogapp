@@ -10,7 +10,7 @@ interface Props {}
 export const Popular = (props: Props) => {
 	const categories: string[] = ["Adventure", "Travel", "Sports"];
 	return (
-		<VStack w="90%" m="auto" h={"1081px"} mt="70px" spacing={"30px"}>
+		<VStack w="90%" m="auto" h={"fit-content"} mt="70px" spacing={"30px"}>
 			{/* Heading */}
 			<Text w="full" fontSize={36} fontWeight={700} color="rgba(73, 80, 87, 1)">
 				Popular topics
