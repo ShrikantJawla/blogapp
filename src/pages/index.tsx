@@ -1,9 +1,13 @@
 /** @format */
 
+import { Footer } from "@/components/Footer/Footer";
+import { FooterMark } from "@/components/Footer/FooterMark";
 import { SingleBlogWithImage } from "@/components/Home/SingleBlogWithImage";
 import { TopHeader } from "@/components/Home/TopHeader";
 import Head from "next/head";
 import { Popular } from "../components/Home/Popular";
+
+//new comment
 
 export default function Home() {
 	return (
@@ -21,6 +25,8 @@ export default function Home() {
 				<TopHeader />
 				<Popular />
 				<SingleBlogWithImage />
+				<Footer />
+				<FooterMark />
 			</main>
 		</>
 	);

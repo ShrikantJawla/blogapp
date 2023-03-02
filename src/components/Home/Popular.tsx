@@ -65,7 +65,7 @@ export const Popular = (props: Props) => {
 						justifyContent="center"
 						alignItems={"center"}
 						key={v4()}
-						h="450px"
+						h="410px"
 					>
 						<Post />
 					</GridItem>

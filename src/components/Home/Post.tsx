@@ -18,7 +18,7 @@ export const Post = (props: Props) => {
 		>
 			<Image
 				w="full"
-				h="280px"
+				h="210px"
 				alt="blog Image"
 				src="/Blog Image.png"
 				objectFit={"cover"}
@@ -29,6 +29,7 @@ export const Post = (props: Props) => {
 				w="full"
 				color={"rgba(108, 117, 125, 1)"}
 				p="4px"
+				px={"10px"}
 			>
 				08.08.2023
 			</Text>
@@ -39,6 +40,7 @@ export const Post = (props: Props) => {
 				fontSize={18}
 				fontWeight={700}
 				color={"rgba(73, 80, 87, 1)"}
+				px={"10px"}
 			>
 				Dream destinations to visit this year in Paris
 			</Text>
@@ -47,6 +49,7 @@ export const Post = (props: Props) => {
 				fontSize={12}
 				fontWeight={400}
 				color="rgba(108, 117, 125, 1)"
+				px={"10px"}
 			>
 				Progressively incentivize cooperative systems through technically sound
 				functionalities. Credibly productivate seamless data with flexible

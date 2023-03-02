@@ -75,7 +75,7 @@ const Login = (props: Props) => {
 	};
 
 	return (
-		<VStack pt="20px" w="full" h="100vh" bg="#F2F5F7">
+		<VStack pt="90px" w="full" h="100vh" bg="#F2F5F7">
 			<VStack
 				w={{ base: "99%", md: "404px" }}
 				p="10px"
