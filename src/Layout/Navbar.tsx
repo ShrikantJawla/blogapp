@@ -10,7 +10,7 @@ import { StoreType } from "../redux/store";
 import { logout } from "@/redux/auth/auth.actions";
 import { useEffect, useState } from "react";
 
-export const links = [
+export const links: { text: string; href: string }[] = [
 	{ text: "Home", href: "/" },
 	{ text: "About", href: "#" },
 	{ text: "Articles", href: "#" },
